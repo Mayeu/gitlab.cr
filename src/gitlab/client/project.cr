@@ -97,6 +97,18 @@ module Gitlab
         get("projects/#{project}").parse
       end
 
+      # Gets a list of project variables
+      #
+      # - params  [Int32, String] project The ID or name of a project. If using namespaced projects call make sure that the NAMESPACE/PROJECT_NAME is URL-encoded. If using namespaced projects call make sure that the NAMESPACE/PROJECT_NAME is URL-encoded.
+      # - return [Array] Variables of the project
+      #
+      # ```
+      # client.project("gitlab")
+      # ```
+      def project_variables(project : Int32 | String, params : Hash? = nil) : Array
+        get("projects/#{project}/variables", params: params).parse.as_a
+      end
+
       # Gets a list of project events.
       #
       # - params  [Int32, String] project The ID of a project. If using namespaced projects call make sure that the NAMESPACE/PROJECT_NAME is URL-encoded.
